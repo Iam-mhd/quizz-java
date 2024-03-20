@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff; 
+            font-size: 24px; 
+            margin-top: 50px;
+        }
+        form {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #007bff; 
+            font-size: 18px;
+        }
+        input[type="text"],
+        input[type="submit"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px; 
+            color: #007bff; 
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px; 
+            color: #007bff;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff; 
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ajouter une question</h1>
+
+    <form id="addQuestionForm" method="post" action="addquestion.php">
+        <label for="question">Question :</label><br>
+        <textarea id="question" name="question" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="option1">Option 1 :</label>
+        <input type="text" id="option1" name="option1" required><br>
+
+        <label for="option2">Option 2 :</label>
+        <input type="text" id="option2" name="option2" required><br>
+
+        <label for="option3">Option 3 :</label>
+        <input type="text" id="option3" name="option3" required><br><br>
+
+        <label for="reponse_correcte">Réponse correcte :</label>
+        <select id="reponse_correcte" name="reponse_correcte">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select><br><br>
+
+        <input type="submit" value="Ajouter la question">
+    </form>
+
+    <div id="message"></div>
+</body>
+</html>

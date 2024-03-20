@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des questions</title>
+</head>
+<body>
+    <h1>Liste des questions</h1>
+    <div id="questionsContainer"></div>
+    <div id="pagination">
+        <button id="prevButton" disabled>Précédent</button>
+        <button id="nextButton">Suivant</button>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var page = 1;
+            var questionsPerPage = 10;
+            $('#nextButton').click(function() {
+                page++;
+                loadQuestions(page);
+            });
+            $('#prevButton').click(function() {
+                if (page > 1) {
+                    page--;
+                    loadQuestions(page);
+                }
+            });
+            function loadQuestions(page) {
+                $.ajax({
+                    url: 'getquestion.php',
+                    method: 'GET',
+                    data: { page: page, per_page: questionsPerPage },
+                    success: function(response) {
+                        $('#questionsContainer').html(response);
+                        updatePaginationButtons(page);
+                        addEventListeners();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching questions:', error);
+                    }
+                });
+            }
+            function addEventListeners() {
+                $('.editButton').click(function() {
+                    alert('Code pour modifier la question');
+                });
+
+                $('.deleteButton').click(function() {
+                    alert('Code pour supprimer la question');
+                });
+                $('.hideButton').click(function() {
+                    alert('Code pour masquer la question');
+                });
+            }
+            function updatePaginationButtons(page) {
+                $('#prevButton').prop('disabled', page <= 1);
+                $('#nextButton').prop('disabled', page >= totalPages);
+            }
+        });
+    </script>
+</body>
+</html>
